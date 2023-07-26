@@ -4,15 +4,15 @@ enum RadioMessage {
     Plu = 1111
 }
 input.onButtonPressed(Button.A, function () {
-    control.reset()
+    basic.showIcon(IconNames.No)
+    basic.pause(1000)
+    basic.showIcon(IconNames.Happy)
+    motorbit.forward(60)
+    basic.pause(1000)
+    motorbit.brake()
+    basic.showIcon(IconNames.Sad)
 })
 basic.showIcon(IconNames.Yes)
-radio.setGroup(1)
 basic.forever(function () {
-    basic.showIcon(IconNames.Rollerskate)
-    radio.sendMessage(RadioMessage.Kinderwagen)
-    basic.pause(1000)
-    basic.showIcon(IconNames.Umbrella)
-    radio.sendMessage(RadioMessage.Plu)
-    basic.pause(1000)
+	
 })

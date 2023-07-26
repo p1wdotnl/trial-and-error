@@ -1,13 +1,12 @@
 {
-    "name": "Trial and Error",
+    "name": "Trial and Error - Kopiëren",
     "description": "",
     "dependencies": {
         "core": "*",
         "radio": "*",
         "microphone": "*",
         "motorbit": "github:tinkertanker/pxt-motorbit#v2.0.0",
-        "radio-broadcast": "*",
-        "BitBot": "github:4tronix/bitbot#1.5.5"
+        "radio-broadcast": "*"
     },
     "files": [
         "main.blocks",
