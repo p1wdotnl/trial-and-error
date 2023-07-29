@@ -1,29 +1,85 @@
 enum RadioMessage {
-    message1 = 49434,
+    Plu = 1111,
     Kinderwagen = 30238,
-    Plu = 1111
+    message1 = 49434
 }
 input.onButtonPressed(Button.A, function () {
-    basic.showIcon(IconNames.No)
-    basic.pause(1000)
+    music._playDefaultBackground(music.builtInPlayableMelody(Melodies.PowerUp), music.PlaybackMode.InBackground)
+    basic.showIcon(IconNames.Rollerskate)
+    basic.pause(200)
     basic.showIcon(IconNames.Happy)
     motorbit.forward(60)
-    basic.pause(500)
+    basic.pause(700)
     motorbit.turnright(50)
     basic.pause(3000)
     motorbit.turnleft(50)
     basic.pause(3000)
-    motorbit.forward(20)
-    basic.pause(2000)
-    basic.showIcon(IconNames.Yes)
+    motorbit.forward(40)
+    basic.pause(500)
+    motorbit.brake()
+    basic.showIcon(IconNames.Asleep)
+})
+function zetAllePinnen (aan: boolean) {
+    pins.digitalWritePin(DigitalPin.P0, 1)
+    pins.digitalWritePin(DigitalPin.P1, 1)
+    pins.digitalWritePin(DigitalPin.P2, 1)
+    pins.digitalWritePin(DigitalPin.P3, 1)
+    pins.digitalWritePin(DigitalPin.P4, 1)
+    pins.digitalWritePin(DigitalPin.P5, 1)
+    pins.digitalWritePin(DigitalPin.P6, 1)
+    pins.digitalWritePin(DigitalPin.P7, 1)
+    pins.digitalWritePin(DigitalPin.P8, 1)
+    pins.digitalWritePin(DigitalPin.P9, 1)
+    pins.digitalWritePin(DigitalPin.P10, 1)
+    pins.digitalWritePin(DigitalPin.P11, 1)
+    pins.digitalWritePin(DigitalPin.P12, 1)
+    pins.digitalWritePin(DigitalPin.P13, 1)
+    pins.digitalWritePin(DigitalPin.P14, 1)
+    pins.digitalWritePin(DigitalPin.P15, 1)
+    pins.digitalWritePin(DigitalPin.P16, 1)
+    basic.pause(500)
+    pins.digitalWritePin(DigitalPin.P0, 0)
+    pins.digitalWritePin(DigitalPin.P1, 0)
+    pins.digitalWritePin(DigitalPin.P2, 0)
+    pins.digitalWritePin(DigitalPin.P3, 0)
+    pins.digitalWritePin(DigitalPin.P4, 0)
+    pins.digitalWritePin(DigitalPin.P5, 0)
+    pins.digitalWritePin(DigitalPin.P6, 0)
+    pins.digitalWritePin(DigitalPin.P7, 0)
+    pins.digitalWritePin(DigitalPin.P8, 0)
+    pins.digitalWritePin(DigitalPin.P9, 0)
+    pins.digitalWritePin(DigitalPin.P10, 0)
+    pins.digitalWritePin(DigitalPin.P11, 0)
+    pins.digitalWritePin(DigitalPin.P12, 0)
+    pins.digitalWritePin(DigitalPin.P13, 0)
+    pins.digitalWritePin(DigitalPin.P14, 0)
+    pins.digitalWritePin(DigitalPin.P15, 0)
+    pins.digitalWritePin(DigitalPin.P16, 0)
+}
+input.onButtonPressed(Button.B, function () {
+    basic.showString("" + (control.deviceSerialNumber()))
 })
 // v0.0..0
 basic.showIcon(IconNames.Yes)
 basic.forever(function () {
-    if (pins.digitalReadPin(DigitalPin.P4) == 0) {
-        basic.showNumber(0)
+    if (pins.digitalReadPin(DigitalPin.P13) == 1) {
+        if (pins.digitalReadPin(DigitalPin.P14) == 1) {
+            basic.showArrow(ArrowNames.South)
+            motorbit.brake()
+        } else {
+            basic.showArrow(ArrowNames.East)
+        }
     } else {
-        basic.showNumber(1)
+        if (pins.digitalReadPin(DigitalPin.P14) == 1) {
+            basic.showArrow(ArrowNames.West)
+        } else {
+            basic.showArrow(ArrowNames.North)
+        }
     }
-    basic.pause(500)
+    if (sonarbit.sonarbit_distance(Distance_Unit.Distance_Unit_cm, DigitalPin.P16) < 5) {
+        motorbit.brake()
+        basic.showIcon(IconNames.StickFigure)
+    } else {
+        basic.clearScreen()
+    }
 })
