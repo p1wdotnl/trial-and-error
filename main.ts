@@ -6,7 +6,7 @@ enum RadioMessage {
 input.onButtonPressed(Button.A, function () {
     music._playDefaultBackground(music.builtInPlayableMelody(Melodies.PowerUp), music.PlaybackMode.InBackground)
     basic.showIcon(IconNames.Rollerskate)
-    basic.pause(200)
+    basic.pause(100)
     basic.showIcon(IconNames.Happy)
     motorbit.forward(100)
     basic.pause(500)
@@ -58,13 +58,16 @@ function zetAllePinnen (aan: boolean) {
 }
 input.onButtonPressed(Button.B, function () {
     basic.showIcon(IconNames.TShirt)
-    basic.pause(200)
+    basic.pause(100)
     basic.showIcon(IconNames.Happy)
     motorbit.forward(100)
-    basic.pause(2000)
+    while (pins.digitalReadPin(DigitalPin.P15) == 1) {
+        basic.pause(20)
+    }
     motorbit.brake()
     basic.showIcon(IconNames.Asleep)
 })
+pins.digitalWritePin(DigitalPin.P15, 1)
 // v0.0..0
 basic.showIcon(IconNames.Yes)
 basic.forever(function () {
@@ -79,7 +82,6 @@ basic.forever(function () {
             basic.showArrow(ArrowNames.West)
         } else {
             basic.showIcon(IconNames.No)
-            motorbit.brake()
         }
     }
     if (sonarbit.sonarbit_distance(Distance_Unit.Distance_Unit_cm, DigitalPin.P16) < 5) {
