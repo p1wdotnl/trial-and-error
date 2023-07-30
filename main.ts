@@ -61,7 +61,7 @@ input.onButtonPressed(Button.B, function () {
     basic.pause(100)
     basic.showIcon(IconNames.Happy)
     motorbit.forward(100)
-    while (pins.digitalReadPin(DigitalPin.P15) == 1) {
+    while (pins.digitalReadPin(DigitalPin.P15) != 1) {
         basic.pause(20)
     }
     motorbit.brake()
@@ -85,8 +85,7 @@ basic.forever(function () {
         }
     }
     if (sonarbit.sonarbit_distance(Distance_Unit.Distance_Unit_cm, DigitalPin.P16) < 5) {
-        motorbit.brake()
-        basic.showIcon(IconNames.StickFigure)
+    	
     } else {
         basic.clearScreen()
     }
